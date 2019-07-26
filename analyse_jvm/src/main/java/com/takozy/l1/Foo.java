@@ -1,4 +1,4 @@
-package com.takozy.one;
+package com.takozy.l1;
 
 /**
  * JVM 中 boolean 基本类型的保存是用 int 的值保存
@@ -8,6 +8,7 @@ package com.takozy.one;
  *
  * boolean类型在堆中只占 32bit(4byte) 而 boolean[] 数组是以 byte[] 数组实现 占8bit
  *
+ * 大类型转小类型进行掩码操作
  */
 public class Foo {
     public static void main(String[] args) {
