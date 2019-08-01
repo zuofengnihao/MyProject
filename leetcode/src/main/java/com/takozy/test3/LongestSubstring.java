@@ -1,4 +1,4 @@
-package com.test3;
+package com.takozy.test3;
 
 import java.util.HashMap;
 
