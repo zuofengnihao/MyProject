@@ -33,25 +33,58 @@ public class AddTwoNumbers {
         }
     }
 
+    /**
+     * 自己的解法
+     * @param l1
+     * @param l2
+     * @return
+     */
     public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         int sum = 0;
-        ListNode result = null;
-        ListNode next = null;
-        while (l1 != null || l2 != null || sum == 0) {
-            int num1 = l1 == null ? 0 : l1.val;
-            int num2 = l2 == null ? 0 : l2.val;
-            l1 = l1.next;
-            l2 = l2.next;
-            if (result == null) {
-                result = new ListNode((num1 + num2) % 10 + sum);
-                next = result.next;
-            } else {
-                next = new ListNode((num1 + num2) % 10 + sum);
-                next = next.next;
+        ListNode node = new ListNode(0);
+        ListNode result = node;
+        while (l1 != null || l2 != null || sum > 0) {
+            int num1 = 0;
+            int num2 = 0;
+            if (l1 != null) {
+                num1 = l1.val;
+                l1 = l1.next;
             }
-            sum = (num1 + num2) / 10;
+            if (l2 != null) {
+                num2 = l2.val;
+                l2 = l2.next;
+            }
+            node.next = new ListNode((num1 + num2 + sum) % 10);
+            node = node.next;
+            sum = (num1 + num2 + sum) / 10;
         }
-        return result;
+        return result.next;
+    }
+
+    /**
+     * Leetcode官方解法
+     * @param l1
+     * @param l2
+     * @return
+     */
+    public static ListNode addTwoNumbers1(ListNode l1, ListNode l2) {
+        ListNode dummyHead = new ListNode(0);
+        ListNode p = l1, q = l2, curr = dummyHead;
+        int carry = 0;
+        while (p != null || q != null) {
+            int x = (p != null) ? p.val : 0;
+            int y = (q != null) ? q.val : 0;
+            int sum = carry + x + y;
+            carry = sum / 10;
+            curr.next = new ListNode(sum % 10);
+            curr = curr.next;
+            if (p != null) p = p.next;
+            if (q != null) q = q.next;
+        }
+        if (carry > 0) {
+            curr.next = new ListNode(carry);
+        }
+        return dummyHead.next;
     }
 }
 
