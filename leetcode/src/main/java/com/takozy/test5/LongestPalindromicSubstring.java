@@ -1,7 +1,5 @@
 package com.takozy.test5;
 
-import java.util.HashMap;
-
 /**
  * 给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。
  *
@@ -22,10 +20,32 @@ import java.util.HashMap;
 public class LongestPalindromicSubstring {
 
     public static void main(String[] args) {
-        System.out.println(longestPalindrome("cbbd"));
+        System.out.println(longestPalindrome("abacab"));
     }
 
     public static String longestPalindrome(String s) {
-       
+        if ("".equals(s)) return "";
+        int begin = 0, end = 0;
+
+        for (int i = 0; i < s.length(); i ++) {
+            for (int j = s.length() - 1; j > i; j--) {
+                if (s.charAt(i) == s.charAt(j)) {
+                    boolean flag = true;
+                    while (i < j) {
+                        if (s.charAt(i++) != s.charAt(j--)) {
+                            flag = false;
+                            break;
+                        }
+                    }
+                    if (flag) {
+
+                    } else {
+                        i = begin;
+                        j = end;
+                    }
+                }
+            }
+        }
+        return "".equals(s) ? "" : s.substring(0, 1);
     }
 }
