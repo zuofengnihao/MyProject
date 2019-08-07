@@ -50,16 +50,32 @@ public class MedianOfTwoSortedArrays {
     }
 
     public static double findMedianSortedArrays_1(int[] nums1, int[] nums2) {
-        int m = nums1.length, n = nums2.length;
+        int m,n;
+        int[] a,b;
         if (nums1.length > nums2.length) {
             m = nums2.length; n = nums1.length;
-            int[] temp = nums1; nums1 = nums2; nums2 = temp;
+            a = nums2; b = nums1;
+        } else {
+            m = nums1.length; n = nums2.length;
+            a = nums1; b = nums2;
         }
-        int iMax = m, iMin = 0, half = (m + n + 1) / 2;
-        while (iMax >= iMin) {
-            int i = (iMax + iMin) / 2;
-            int j = half - i;
+        int i , j, min = 0, max = m;
+        while (min <= max) {
+            i = (max + min) / 2;
+            j = (m + n) / 2 - i;
+            if (m == 0) {
+                return n % 2 == 1 ? b[j] : (b[j-1] + b[j]) / 2.0;
+            } else {
+                if (i == 0) {
+                    return (m + n) % 2 == 1 ? Math.min(a[0], b[j-1]) :
+                } else if (i == m) {
+                    if (j == 0) {
+
+                    }
+                } else {
+
+                }
+            }
         }
-        return 0.0;
     }
 }

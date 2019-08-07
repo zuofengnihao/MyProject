@@ -24,32 +24,9 @@ public class LongestPalindromicSubstring {
     }
 
     public static String longestPalindrome(String s) {
-<<<<<<< HEAD
-
-=======
         if ("".equals(s)) return "";
         int begin = 0, end = 0;
 
-        for (int i = 0; i < s.length(); i ++) {
-            for (int j = s.length() - 1; j > i; j--) {
-                if (s.charAt(i) == s.charAt(j)) {
-                    boolean flag = true;
-                    while (i < j) {
-                        if (s.charAt(i++) != s.charAt(j--)) {
-                            flag = false;
-                            break;
-                        }
-                    }
-                    if (flag) {
-
-                    } else {
-                        i = begin;
-                        j = end;
-                    }
-                }
-            }
-        }
-        return "".equals(s) ? "" : s.substring(0, 1);
->>>>>>> 2615c0805b57ae1310d3cc55e4678963880f4d3f
+        return null;
     }
 }
