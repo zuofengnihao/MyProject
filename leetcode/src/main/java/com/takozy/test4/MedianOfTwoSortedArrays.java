@@ -27,7 +27,7 @@ package com.takozy.test4;
 public class MedianOfTwoSortedArrays {
 
     public static void main(String[] args) {
-        System.out.println(findMedianSortedArrays_1(new int[]{1,2}, new int[]{3,4}));
+        System.out.println(findMedianSortedArrays_1(new int[]{2,3}, new int[]{1}));
     }
 
     /**
@@ -63,19 +63,14 @@ public class MedianOfTwoSortedArrays {
         while (min <= max) {
             i = (max + min) / 2;
             j = (m + n) / 2 - i;
-            if (m == 0) {
-                return n % 2 == 1 ? b[j] : (b[j-1] + b[j]) / 2.0;
+            if(i < max && a[i] < b[j-1]) {
+                max = i + 1;
+            } else if (i > 0 && b[j] < a[i-1]) {
+                min = i - 1;
             } else {
-                if (i == 0) {
-                    return (m + n) % 2 == 1 ? Math.min(a[0], b[j-1]) :
-                } else if (i == m) {
-                    if (j == 0) {
 
-                    }
-                } else {
-
-                }
             }
         }
+        return 0.0;
     }
 }
