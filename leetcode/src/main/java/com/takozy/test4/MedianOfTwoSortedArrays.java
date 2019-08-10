@@ -62,13 +62,31 @@ public class MedianOfTwoSortedArrays {
         int i , j, min = 0, max = m;
         while (min <= max) {
             i = (max + min) / 2;
-            j = (m + n) / 2 - i;
+            j = (m + n + 1) / 2 - i;
             if(i < max && a[i] < b[j-1]) {
-                max = i + 1;
+                min = i + 1;
             } else if (i > 0 && b[j] < a[i-1]) {
-                min = i - 1;
+                max = i - 1;
             } else {
+                int left;
+                if (i == 0) {
+                    left = b[j-1];
+                } else if (j == 0) {
+                    left = a[i-1];
+                } else {
+                    left = Math.max(a[i-1],  b[j-1]);
+                }
+                if ((m + n) % 2 == 1) return left;
 
+                int right;
+                if (i == m) {
+                    right = b[j];
+                } else if (j == n) {
+                    right = a[i];
+                } else {
+                    right = Math.min(a[i], b[j]);
+                }
+                return (left + right) / 2.0;
             }
         }
         return 0.0;
