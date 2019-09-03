@@ -20,13 +20,42 @@ package com.takozy.test5;
 public class LongestPalindromicSubstring {
 
     public static void main(String[] args) {
-        System.out.println(longestPalindrome("abacab"));
+        System.out.println(longestPalindrome_2("cababa"));
     }
 
-    public static String longestPalindrome(String s) {
-        if ("".equals(s)) return "";
-        int begin = 0, end = 0;
+    /**
+     * 暴力解题
+     * @param s
+     * @return
+     */
+    public static String longestPalindrome_1(String s) {
+        String asn = "";
+        for (int i = 0; i < s.length(); i ++) {
+            for (int j = i + 1; j <= s.length(); j++) {
+                String test = s.substring(i, j);
+                if (isPalindrome(test)) {
+                    asn = test.length() > asn.length() ? test : asn;
+                }
+            }
+        }
+        return asn;
+    }
+    public static boolean isPalindrome(String s) {
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) != s.charAt(s.length()-1-i)) {
+                return false;
+            }
+        }
+        return true;
+    }
 
+
+
+    public static String longestPalindrome_2(String s) {
+        String _s = "";
+        for (int i = s.length() - 1; i >= 0; i--) {
+            _s += s.charAt(i);
+        }
         return null;
     }
 }
