@@ -72,4 +72,17 @@ public class LongestSubstring {
         }
         return ans;
     }
+
+    public static int test(String s) {
+        HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+        int result = 0, flag = 0;
+        for (int i = 0 ; i < s.length(); i ++) {
+            char c = s.charAt(i);
+            if (map.containsKey(c)) {
+                map.get(c);
+            }
+            map.put(c, i);
+        }
+        return result;
+    }
 }

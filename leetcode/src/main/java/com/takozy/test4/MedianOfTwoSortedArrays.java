@@ -138,7 +138,6 @@ public class MedianOfTwoSortedArrays {
                 } else {
                     right = Math.min(a[i], b[j]);
                 }
-
                 return (left + right) / 2.0;
             }
         }
