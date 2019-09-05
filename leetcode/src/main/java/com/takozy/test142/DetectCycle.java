@@ -1,6 +1,7 @@
 package com.takozy.test142;
 
 import java.util.HashSet;
+import java.util.logging.SocketHandler;
 
 public class DetectCycle {
 
@@ -42,14 +43,39 @@ public class DetectCycle {
      * 双指针(快慢指针)
      * @param head
      * @return
+     *
+     *
+     * A       B      C
+     * #-------#------#
+     *         |      |
+     *         |      |
+     *         |      |
+     *         |      |
+     *         #------#
+     *         E      D(交点)
+     *
+     *  A->B的长度 = F(非环内节点) | B->C->D的长度 = a | D->E->B的长度 = b | 环的长度则为 a + b
+     *
+     *  f fast指针走过的长度 s slow指针走过的长度
+     *
+     *  f = 2s | s = F + a | f = s + n(a + b) ===>  2(F+a) = (F+a) + n(a+b) ===> F = n(a+b) - a ===> F = (n-1)(a+b) + b
+     *
+     *  推导的结论告诉我们slow指针在相交后 再走过F的距离 则会回到环型的入口节点处
      */
     public static ListNode detectCycle1(ListNode head) {
-        if (head == null || head.next == null) return null;
-        ListNode fast = head.next, slow = head;
-        while (fast != slow) {
-            if (fast == null || fast.next == null) return null;
-            slow = slow.next;
+        ListNode fast = head, slow = head;
+        while (fast != null && fast.next != null) {
             fast = fast.next.next;
+            slow = slow.next;
+            if (fast == slow) {
+                fast = head;
+                break;
+            }
+        }
+        if (fast == null || fast.next == null) return null;
+        while (fast != slow) {
+            fast = fast.next;
+            slow = slow.next;
         }
         return fast;
     }
