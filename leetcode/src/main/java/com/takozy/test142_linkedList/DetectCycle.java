@@ -1,8 +1,10 @@
-package com.takozy.test142;
+package com.takozy.test142_linkedList;
 
 import java.util.HashSet;
-import java.util.logging.SocketHandler;
 
+/**
+ * 判断链表是否有环并且返回环起点节点
+ */
 public class DetectCycle {
 
     public static void main(String[] args) {

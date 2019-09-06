@@ -1,4 +1,4 @@
-package com.takozy.test160;
+package com.takozy.test160_linkedList;
 
 import java.util.HashSet;
 

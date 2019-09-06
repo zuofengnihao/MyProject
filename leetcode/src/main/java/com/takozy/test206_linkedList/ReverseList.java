@@ -1,4 +1,4 @@
-package com.takozy.test206;
+package com.takozy.test206_linkedList;
 
 /**
  * 反转一个单链表。
@@ -35,6 +35,17 @@ public class ReverseList {
             newNode = temp;
         }
         return newNode;
+    }
+
+    static ListNode reverse(ListNode head) {
+        ListNode newHead = null;
+        while (head != null) {
+            ListNode temp = head.next;
+            head.next = newHead;
+            newHead = head;
+            head = temp;
+        }
+        return newHead;
     }
 }
 

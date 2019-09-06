@@ -1,6 +1,4 @@
-package com.takozy.test92;
-
-import java.util.List;
+package com.takozy.test92_linkedList;
 
 /**
  * 反转从位置 m 到 n 的链表。请使用一趟扫描完成反转。
