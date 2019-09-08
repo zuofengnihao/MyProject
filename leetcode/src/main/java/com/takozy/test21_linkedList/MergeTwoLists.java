@@ -22,7 +22,7 @@ public class MergeTwoLists {
     public static ListNode mergeTwoLists (ListNode l1, ListNode l2) {
         ListNode cur1 = l1;
 
-        
+
         return l1;
     }
 }
