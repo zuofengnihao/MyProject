@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="32fe0213-24f9-4ef3-8972-bdec51b9f00c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/takozy/test21_linkedList/MergeTwoLists.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/takozy/test138_linkedList/CopyRandomList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/takozy/test138_linkedList/CopyRandomList.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,31 +16,33 @@
     <session id="346749444">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
           <entry key="project.open.time.3" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.open.time.4" value="1" />
+          <entry key="project.open.time.5" value="1" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="2" />
-          <entry key="xml" value="1" />
+          <entry key="java" value="3" />
+          <entry key="xml" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="2" />
-          <entry key="XML" value="1" />
+          <entry key="JAVA" value="3" />
+          <entry key="XML" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="505" />
+          <entry key="java" value="1111" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="505" />
+          <entry key="JAVA" value="1111" />
         </counts>
       </usages-collector>
     </session>
@@ -76,14 +78,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/takozy/test138_linkedList/CopyRandomList.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-66">
-              <caret line="125" column="29" lean-forward="true" selection-start-line="125" selection-start-column="29" selection-end-line="125" selection-end-column="29" />
-              <folding>
-                <element signature="e#2014#2029#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="-1161">
+              <caret line="63" column="5" lean-forward="true" selection-start-line="63" selection-start-column="5" selection-end-line="63" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/takozy/test21_linkedList/MergeTwoLists.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="24" column="8" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -109,6 +117,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/takozy/test86_linkedList/Partition.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/takozy/test138_linkedList/ListNode.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/takozy/test138_linkedList/CopyRandomList.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/takozy/test21_linkedList/MergeTwoLists.java" />
       </list>
     </option>
   </component>
@@ -119,18 +128,15 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1700" />
-    <option name="height" value="1056" />
+    <option name="y" value="23" />
+    <option name="width" value="1680" />
+    <option name="height" value="1027" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -141,11 +147,6 @@
             <path>
               <item name="leetcode" type="b2602c69:ProjectViewProjectNode" />
               <item name="leetcode" type="462c0819:PsiDirectoryNode" />
-              <item name=".idea" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="leetcode" type="b2602c69:ProjectViewProjectNode" />
-              <item name="leetcode" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -186,18 +187,31 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="takozy" type="462c0819:PsiDirectoryNode" />
-              <item name="test138_linkedList" type="462c0819:PsiDirectoryNode" />
+              <item name="test21_linkedList" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="leetcode" type="b2602c69:ProjectViewProjectNode" />
+              <item name="leetcode" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="takozy" type="462c0819:PsiDirectoryNode" />
+              <item name="test21_linkedList" type="462c0819:PsiDirectoryNode" />
+              <item name="MergeTwoLists.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1567946220695" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1567955476031" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -332,16 +346,19 @@
       <workItem from="1567703024281" duration="3283000" />
       <workItem from="1567730531859" duration="15944000" />
       <workItem from="1567859335878" duration="12967000" />
+      <workItem from="1567953986131" duration="258000" />
+      <workItem from="1567955094132" duration="1589000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36820000" />
+    <option name="totallyTimeSpent" value="38667000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1700" height="1056" extended-state="0" />
+    <frame x="0" y="23" width="1680" height="1027" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24878049" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25457877" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -350,14 +367,14 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32925472" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.2502781" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39933258" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="9" weight="0.32814237" />
+      <window_info anchor="bottom" id="Messages" order="9" weight="0.32785088" />
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="11" />
       <window_info anchor="bottom" id="Run with VisualVM" order="12" />
@@ -387,13 +404,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6064">
-          <caret line="32" column="16" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/takozy/test138_linkedList/ListNode.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/takozy/test86_linkedList/Partition.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/takozy/test92_linkedList/ReverseBetween.java" />
@@ -401,13 +411,24 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/takozy/test142_linkedList/DetectCycle.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/takozy/test160_linkedList/IntersectionNode.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/takozy/test206_linkedList/ReverseList.java" />
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1734">
+          <caret line="102" column="39" lean-forward="true" selection-start-line="102" selection-start-column="39" selection-end-line="102" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/takozy/test138_linkedList/CopyRandomList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-66">
-          <caret line="125" column="29" lean-forward="true" selection-start-line="125" selection-start-column="29" selection-end-line="125" selection-end-column="29" />
-          <folding>
-            <element signature="e#2014#2029#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-1161">
+          <caret line="63" column="5" lean-forward="true" selection-start-line="63" selection-start-column="5" selection-end-line="63" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/takozy/test21_linkedList/MergeTwoLists.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="8" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="8" />
         </state>
       </provider>
     </entry>
