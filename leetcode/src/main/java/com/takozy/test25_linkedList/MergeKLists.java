@@ -1,5 +1,8 @@
 package com.takozy.test25_linkedList;
 
+import com.takozy.test21_linkedList.ListNode;
+import com.takozy.test21_linkedList.MergeTwoLists;
+
 import javax.xml.soap.Node;
 
 /**
@@ -41,7 +44,8 @@ public class MergeKLists {
     }
 
     /**
-     * 自己的思路
+     * 自己的思路 O(kN)
+     * k 链表长度 N 节点总数
      *
      * 1 -> 4 -> 5
      * 1 -> 3 -> 4
@@ -126,10 +130,12 @@ public class MergeKLists {
         }
     }
 
-}
+    /**
+     * 官方 分治算法 O(Nlogk)
+     * @return
+     */
+    public static ListNode mergeKLists1(ListNode[] lists) {
+        return null;
+    }
 
-class ListNode {
-    int val;
-    ListNode next;
-    ListNode(int x){val = x;}
 }
