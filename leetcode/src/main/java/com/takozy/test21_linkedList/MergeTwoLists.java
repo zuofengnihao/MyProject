@@ -16,14 +16,60 @@ package com.takozy.test21_linkedList;
 public class MergeTwoLists {
 
     public static void main(String[] args) {
+        ListNode a = new ListNode(1);
+        ListNode b = new ListNode(2);
+        ListNode c = new ListNode(4);
+        ListNode d = new ListNode(7);
+        ListNode e = new ListNode(1);
+        ListNode f = new ListNode(3);
+        ListNode g = new ListNode(4);
 
+        a.next = b;
+        b.next = c;
+        c.next = d;
+        e.next = f;
+        f.next = g;
+
+        ListNode node = mergeTwoLists(a, e);
+
+        System.out.println(node);
     }
 
+    /**
+     * 自己的思路 O(m+n)
+     * @param l1
+     * @param l2
+     * @return
+     */
     public static ListNode mergeTwoLists (ListNode l1, ListNode l2) {
-        ListNode cur1 = l1;
-
-
-        return l1;
+        ListNode listNode = new ListNode(0);
+        ListNode cn = listNode;
+        while (l1 != null || l2 != null) {
+             if (l1 == null) {
+                cn.next = l2;
+                break;
+             } else if (l2 == null) {
+                cn.next = l1;
+                break;
+             } else {
+                 if (l1.val < l2.val) {
+                     cn.next = l1;
+                     l1 = l1.next;
+                     cn = cn.next;
+                 } else if (l2.val < l1.val) {
+                     cn.next = l2;
+                     l2 = l2.next;
+                     cn = cn.next;
+                 } else  {
+                     cn.next = l1;
+                     l1 = l1.next;
+                     cn.next.next = l2;
+                     l2 = l2.next;
+                     cn = cn.next.next;
+                 }
+             }
+        }
+        return listNode.next;
     }
 }
 
