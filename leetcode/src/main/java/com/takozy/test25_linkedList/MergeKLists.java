@@ -39,7 +39,7 @@ public class MergeKLists {
         ListNode c2 = new ListNode(6);
         c1.next = c2;
 
-        ListNode listNode = mergeKLists(new ListNode[]{a1, b1, c1});
+        ListNode listNode = mergeKLists1(new ListNode[]{a1, b1, c1});
         System.out.println(listNode);
     }
 
@@ -133,9 +133,22 @@ public class MergeKLists {
     /**
      * 官方 分治算法 O(Nlogk)
      * @return
+     *
+     * 递归调用method将链表拆分成1,2个 2个链表合并 1个链表直接返回
      */
     public static ListNode mergeKLists1(ListNode[] lists) {
-        return null;
+        if (lists == null || lists.length == 0) return null;
+        return method(lists, 0, lists.length - 1);
     }
 
+    public static ListNode method(ListNode[] lists, int begin, int end) {
+        if (begin == end) {
+            return lists[begin];
+        } else if (begin + 1 == end) {
+            return MergeTwoLists.mergeTwoLists(lists[begin], lists[end]);
+        } else {
+            int a = (begin + end + 1) / 2;
+            return MergeTwoLists.mergeTwoLists(method(lists, begin, a - 1), method(lists, a, end));
+        }
+    }
 }
