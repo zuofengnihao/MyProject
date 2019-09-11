@@ -31,26 +31,65 @@ import java.util.Stack;
 public class Calculate {
 
     public static void main(String[] args) {
-        char space = ' ';
-        System.out.println("空格 : " + Integer.valueOf(space));
-        char a = '(';
-        char b = ')';
-        System.out.println("( ~ ) : " + (a-1+1) + " ~ " + (b-1+1));
-        char c0 = '0';
-        char c9 = '9';
-        System.out.println("0 ~ 9 : " + (c0+1-1)+" ~ "+(c9+1-1));
-        char plus = '+';
-        char minus = '-';
-        char multiply = '*';
-        char divide = '/';
-        System.out.println("加减乘除(+,-,*,/) : " + (Integer.valueOf(plus) + " " + Integer.valueOf(minus) + " " + Integer.valueOf(multiply) + " " + Integer.valueOf(divide)));
-
+        int calculate = calculate("2147483647");
+        System.out.println(calculate);
     }
 
-    public int calculate(String s) {
+    public static int calculate(String s) {
         Stack<String> dataStack = new Stack<String>();
         Stack<String> numStack = new Stack<String>();
-        Stack<String> signStack = new Stack<String>();
-        return 0;
+        char[] chars = s.toCharArray();
+        String num = "";
+        for (int i = 0; i < chars.length; i++) {
+            if (chars[i] == ')') {
+                if (!"".equals(num)) {
+                    dataStack.push(num);
+                    num = "";
+                }
+                while (!"(".equals(dataStack.peek())) {
+                    numStack.push(dataStack.pop());
+                }
+                dataStack.pop();
+                int sum = 0;
+                while (!numStack.empty()) {
+                    String pop = numStack.pop();
+                    if ("+".equals(pop)) {
+                        sum += Integer.valueOf(numStack.pop());
+                    } else if ("-".equals(pop)) {
+                        sum -= Integer.valueOf(numStack.pop());
+                    } else {
+                        sum += Integer.valueOf(pop);
+                    }
+                }
+                dataStack.push(sum + "");
+            } else if(chars[i] >= '0' && chars[i] <= '9') {
+                num += chars[i];
+            } else if (chars[i] != ' ') {
+                if (!"".equals(num)) {
+                    dataStack.push(num);
+                    num = "";
+                }
+                dataStack.push(chars[i] + "");
+            }
+        }
+        if (!"".equals(num)) {
+            dataStack.push(num);
+            num = "";
+        }
+        while (!dataStack.empty()) {
+            numStack.push(dataStack.pop());
+        }
+        int result = 0;
+        while (!numStack.empty()) {
+            String flag = numStack.pop();
+            if ("+".equals(flag)) {
+                result += Integer.valueOf(numStack.pop());
+            } else if ("-".equals(flag)) {
+                result -= Integer.valueOf(numStack.pop());
+            } else {
+                result += Integer.valueOf(flag);
+            }
+        }
+        return result;
     }
 }
