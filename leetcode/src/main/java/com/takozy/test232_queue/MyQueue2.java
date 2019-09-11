@@ -13,10 +13,10 @@ public class MyQueue2 {
     }
 
     public void push(int x) {
-        inStack.push(x);
         if (inStack.empty()) {
             top = x;
         }
+        inStack.push(x);
     }
 
     public int pop() {
