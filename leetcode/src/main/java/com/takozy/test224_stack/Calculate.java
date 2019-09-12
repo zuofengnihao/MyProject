@@ -35,6 +35,14 @@ public class Calculate {
         System.out.println(calculate);
     }
 
+    /**
+     * 自己的思路 利用两个栈(数据 计算) 数字 左括号 运算符号 直接入数据栈
+     * 碰到 右括号时 连续出栈并将出栈的元素压入计算栈 直到碰到栈内的左括号
+     * 再将计算栈的全部弹出(正序过程)进行计算后 将结果压入 数据栈
+     * 循环结束后 再将数据栈的依次弹出压出计算栈后再依次弹出 计算出最终结果
+     * @param s
+     * @return
+     */
     public static int calculate(String s) {
         Stack<String> dataStack = new Stack<String>();
         Stack<String> numStack = new Stack<String>();
