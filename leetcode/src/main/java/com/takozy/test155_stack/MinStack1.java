@@ -2,6 +2,9 @@ package com.takozy.test155_stack;
 
 import java.util.Stack;
 
+/**
+ * 利用两个栈 一个压入值 一个压入当前最小值
+ */
 public class MinStack1 {
 
     private Stack<Integer> stack;
