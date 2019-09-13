@@ -31,7 +31,7 @@ import java.util.Stack;
 public class Calculate {
 
     public static void main(String[] args) {
-        int calculate = calculate("(1+(4+5+2)-3)+(6+8)");
+        int calculate = calculate3("7658766");
         System.out.println(calculate);
     }
 
@@ -247,24 +247,78 @@ public class Calculate {
      * @return
      */
     public static int calculate3(String s) {
-        return doCul(s, 0);
+        return doCul(s, 0)[0];
     }
 
-    public static int doCul(String s, int index) {
+    public static int[] doCul(String s, int index) {
         char[] chars = s.toCharArray();
         int result = 0;
+        char operation= '?';
         int number = 0;
         for (int i = index; i < s.length(); i++) {
             if (chars[i] >= '0' && chars[i] <= '9') {
                 number = number * 10 + chars[i] - '0';
-            } else {
-                result = number;
-                number = 0;
-                if (chars[i] == '(') {
-
+            } else if (chars[i] == '+' || chars[i] == '-') {
+                if (operation != '?') {
+                    result = operation == '-' ? result - number : result + number;
+                } else {
+                    result += number;
                 }
+                number = 0;
+                operation = chars[i];
+            } else if (chars[i] == ')') {
+                if (operation != '?') {
+                    result = operation == '-' ? result - number : result + number;
+                } else {
+                    result = number;
+                }
+                return new int[]{result, i};
+            } else if (chars[i] == '(') {
+                int[] ints = doCul(s, i + 1);
+                if (operation != '?') {
+                    result = operation == '-' ? result - ints[0] : result + ints[0];
+                } else {
+                    result = ints[0];
+                }
+                i = ints[1];
             }
         }
-        return 0;
+
+        if (number != 0) {
+            result = operation == '-' ? result - number : result + number;
+        }
+
+        if (number == 0 && operation == '?') return new int[]{0,0};
+
+        return new int[]{result, s.length() - 1};
+    }
+
+    public int[] calculate(String s, int i){
+        int result = 0;
+        int symbol = 1;
+        int tempResult = 0;
+        for(;i<s.length();){
+            char c = s.charAt(i);
+            i++;
+            if(c=='('){
+                int[] rst = calculate(s, i);
+                result = result + symbol * rst[0];
+                i = rst[1];
+            } else if(c==')'){
+                return new int[]{result + symbol * tempResult, i};
+            } else if(c>='0' && c<='9'){
+                if(symbol != 0){
+                    tempResult = tempResult * 10 + c -'0';
+                } else {
+                    result = result * 10 + c - '0';
+                }
+            } else if(c == ' '){
+            } else{
+                result += symbol * tempResult;
+                tempResult = 0;
+                symbol = c == '+'? 1 : -1;
+            }
+        }
+        return new int[]{result + symbol * tempResult, i};
     }
 }
