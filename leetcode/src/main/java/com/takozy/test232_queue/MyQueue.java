@@ -41,6 +41,13 @@ public class MyQueue {
     }
 
     /** Push element x to the back of queue. */
+    /**
+     * 使用两个栈实现队列 改变入栈规则（思路是保持新入栈的元素在栈底）
+     * 当有元素入队列时 判断栈1是否为空 为空直接压入栈1
+     * 如果不为空 则先将栈1的元素全部弹出并压入栈2 再将新元素压入栈1（此时新入栈的元素就在栈底）
+     * 最后又将栈2的元素还原至栈1 即 弹出栈2并压入栈1
+     * @param x
+     */
     public void push(int x) {
         if (stack1.empty()) {
             stack1.push(x);

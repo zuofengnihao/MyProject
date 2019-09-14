@@ -32,6 +32,21 @@ public class ReverseBetween {
         System.out.println(node);
     }
 
+    /**
+     * 反转链表中一段的长度 首先需要2个指针
+     * 1个指向要反转段的前一个
+     * 1个指向要反转段的后一个
+     *
+     * 还需要一个临时指针指向当前操作节点的后一个
+     *
+     * 循环链表 如果进入了反转段开始翻转操作
+     *
+     *
+     * @param head
+     * @param m
+     * @param n
+     * @return
+     */
     public static ListNode reverseBetween(ListNode head, int m, int n) {
         int i = 1;
         ListNode reverse = head;

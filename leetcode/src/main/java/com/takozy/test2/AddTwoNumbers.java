@@ -38,6 +38,15 @@ public class AddTwoNumbers {
      * @param l1
      * @param l2
      * @return
+     *
+     * 声明一个进位值sum=0 声明一个新链表node 并让 cur = node
+     * 同时循环两个链表 条件为任意链表不为空 或 进位值不为0
+     * 取出当前链表的两个值与进位值3个数字相加并取莫10的余数即（(a + b + sum) % 10）赋予当前node
+     * 并将3个值的和除以10的值赋予进位值sum = (a + b + sum) / 10
+     * 如果其中有一个链表已为空 或者两个链表都为空 直接赋值0即可
+     * 循环结束 返回新链表的next
+     *
+     *
      */
     public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         int sum = 0;

@@ -28,6 +28,9 @@ public class DetectCycle {
 
     /**
      * hashset暴力解法
+     * 循环链表 将所以node放入hashset
+     * 当第一次出现重复的node 即hashset.contains(head)时 此节点就是环的起点
+     *
      * @param head
      * @return
      */

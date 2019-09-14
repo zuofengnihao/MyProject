@@ -28,7 +28,7 @@ import java.util.HashMap;
  */
 public class LongestSubstring {
     public static void main(String[] args) {
-        System.out.println(lengthOfLongestSubstring1("pwwkew"));
+        System.out.println(test("abcaacde"));
     }
 
     /**
@@ -73,15 +73,26 @@ public class LongestSubstring {
         return ans;
     }
 
+    /**
+     * 利用hashmap来判断是否重复字符 key存字符 value存该字符的下标
+     * 初始化需要减去的长度flag(即重复字母的下标+1的长度) 初始值是0(不需要减去) 初始化返回值result=0
+     * 遍历字符串 判断当前下标i对应的字符有无重复时 无重复 需要减去的长度flag不变
+     * 当出现重复时 取出map中该字符的下标+1 并判断这个长度是否比当前需要减去的长度长
+     * 如果此值>flag flag取这个值 如果小于flag 说明这两个重复字符之间已经存在其他重复字符 flag不变
+     * 将此字符put至map中并保存下标 并判断此时的结果result是否大于(下标 - flag + 1) 大于result不变 反之result = 下标 - flag + 1;
+     * @param s
+     * @return
+     */
     public static int test(String s) {
-        HashMap<Character, Integer> map = new HashMap<Character, Integer>();
-        int result = 0, flag = 0;
-        for (int i = 0 ; i < s.length(); i ++) {
-            char c = s.charAt(i);
-            if (map.containsKey(c)) {
-                map.get(c);
+        HashMap<Character, Integer> map = new HashMap<>();
+        int flag = 0;
+        int result = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (map.containsKey(s.charAt(i))) {
+                flag = flag > map.get(s.charAt(i)) + 1 ? flag : map.get(s.charAt(i)) + 1;
             }
-            map.put(c, i);
+            map.put(s.charAt(i), i);
+            result = result > i - flag + 1 ? result : i - flag + 1;
         }
         return result;
     }

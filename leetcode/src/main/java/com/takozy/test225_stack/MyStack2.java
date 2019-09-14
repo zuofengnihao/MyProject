@@ -8,6 +8,15 @@ import java.util.Queue;
  *
  * push入队列后 翻转前面的元素 queue.offer(queue.poll())
  *
+ *    ----
+ * 2->   1
+ *    ----
+ *
+ *  -----------
+ *  |    ----  |
+ *  | -> 2 1 --
+ *      ----
+ *
  */
 public class MyStack2 {
 

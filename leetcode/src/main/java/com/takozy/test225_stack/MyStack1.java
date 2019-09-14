@@ -9,6 +9,32 @@ import java.util.Queue;
  * 先push到temp 再将queue全部元素pop出来push到temp
  * 最后另temp和queue翻转temp=queue queue=temp
  *
+ * 1->
+ *
+ *    temp
+ * ---------
+ *
+ * ---------
+ *    queue
+ * ---------
+ *         1
+ * ---------
+ *
+ *
+ * 2->
+ * temp --> queue
+ * ---------
+ * 1->     2
+ * ---------
+ * temp.push(  <-- )
+ *               |
+ * queue -> temp |
+ * ---------     |
+ *         1 -> queue.poll
+ * ---------
+ *
+ *  temp = queue | queue = temp
+ *
  */
 public class MyStack1 {
 

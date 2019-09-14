@@ -103,6 +103,9 @@ public class IntersectionNode {
     /**
      * O(m + n)
      *
+     * 利用HashSet判断是否重复的暴力解法
+     *
+     *
      * @param headA
      * @param headB
      * @return
@@ -121,7 +124,28 @@ public class IntersectionNode {
     }
 
     /**
-     * 快慢指针 O(m + n)
+     * 快慢指针的思想 O(m + n)
+     *          A
+     *       ========|
+     *               |
+     *               |_______
+     *               |
+     *   ------------|
+     *         B
+     *
+     *      B          A
+     * ------------========|
+     *     A        B      |______
+     * ========------------|
+     *
+     *
+     *
+     * 同时循环AB两条链表 尝试找到他们的交点（A.node = B.node）
+     * 如果其中一条已经走到尾节点（next = null） 则让其从从另外一条链表的头开始循环
+     * 另外一条如是操作
+     * 即：curA = curA == null ? headB : curA.next;
+     *     curB = curB == null ? headA : curB.next;
+     * 当相交时即交点起始位置
      *
      * @param headA
      * @param headB

@@ -37,6 +37,10 @@ public class MergeTwoLists {
 
     /**
      * 自己的思路 O(m+n)
+     *
+     * 创建新链表 循环两个链表找到最小的 放在新链表后面
+     * 循环结束 返回新链表.next
+     *
      * @param l1
      * @param l2
      * @return

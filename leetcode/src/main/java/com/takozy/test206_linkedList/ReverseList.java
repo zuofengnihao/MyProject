@@ -25,7 +25,11 @@ public class ReverseList {
         System.out.println(newList);
     }
 
-
+    /**
+     * 循环遍历链表 标记下个节点 再让当前节点的next指向上一个节点
+     * @param head
+     * @return
+     */
     public static ListNode reverseList(ListNode head) {
         ListNode newNode = null;
         while (head != null) {

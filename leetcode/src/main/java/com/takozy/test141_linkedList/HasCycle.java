@@ -25,6 +25,7 @@ public class HasCycle {
 
     /**
      * HashSet t = O(n) s = O(n)
+     * 暴力解法 使用hashset 循环链表放入hashset 判断是否已经包含 如果有(重复)则证明有环
      * @param head
      * @return
      */
@@ -40,6 +41,12 @@ public class HasCycle {
 
     /**
      * 快慢指针(双指针) t = O(n)
+     *
+     * 快慢指针同时从第一个节点出发 慢指针step=1 快指针step=2
+     * 当快指针指向null时证明没有环
+     *
+     * 有环快指针与慢指针定会交于环中
+     *
      * @param head
      * @return
      */

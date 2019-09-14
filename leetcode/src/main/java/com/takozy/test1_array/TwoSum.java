@@ -25,6 +25,15 @@ public class TwoSum {
         System.out.println(Arrays.toString(ints));
     }
 
+    /**
+     * 利用hashmap key保存值 value保存下标
+     * 循环数组 判断map中是否含有 target - cur 的值
+     * 如果有 返回从map中取出下标 并同时返回 当前循环的下标 [map中的下标，当前下标]
+     * 如果没有则放入map
+     * @param nums
+     * @param target
+     * @return
+     */
     public static int[] twoSum(int[] nums, int target) {
         HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
         for (int i = 0; i < nums.length; i++){
