@@ -1,5 +1,6 @@
 package com.takozy.test215_heap;
 
+import java.util.Arrays;
 import java.util.PriorityQueue;
 
 /**
@@ -24,7 +25,12 @@ import java.util.PriorityQueue;
 public class FindKthLargest {
 
     public static void main(String[] args) {
-        System.out.println(findKthlargest(new int[]{3,2,1,5,6,4}, 2));
+        System.out.println(findKthlargest2(new int[]{3,2,1,5,6,4}, 2));
+
+        //快速排序
+        //int[] nums = {43,242,12,65,43,878,1,54,66,29,84};
+        //sort(nums);
+        //System.out.println(Arrays.toString(nums));
     }
 
     /**
@@ -69,11 +75,76 @@ public class FindKthLargest {
 
     /**
      * 官方 快速选择
+     * 使用快速排序思想
      * @param nums
      * @param k
      * @return
      */
     public static int findKthlargest2(int nums[], int k) {
+        return find(nums, 0, nums.length-1, k);
+    }
+
+    /**
+     * 快速排序
+     * 随机一个基准点(一般使用下表0)将小于基准点的放在基准点左边
+     * 大于基准点的放在基准点右边 再用分治思想递归调用基准点左边部分与右边部分
+     *
+     * 具体移动思路
+     * 设置两个变量i，j 排序开始时 i=0，j=n-1
+     * 将i下标点值保存在temp中temp=A[i]
+     * 然后循环j-- j向左移动直到找到小于temp的值 将A[i]=A[j]且i向左移动1
+     * 再循环i++ i向右移动直到找到大于temp的值 将A[j]=A[i]且j向右移动1
+     * 重复两个循环 直到i=j 将A[i]=temp
+     * 使用分治思路 将i左边分为一组 右边分为一组 递归以上操作
+     *
+     * 例子：
+     * i->6 4 7 1 2<-j temp=6 j-- 找到小于temp的2 赋予i对应的值并i++
+     * 2 i->4 7 1 2<-j i++ 找到大于temp的7 赋予j对应的值并j--
+     * 2 4 i->7 1<-j 7 重复以上步骤
+     * 2 4 1 i->1<-j 7 此时i=j 令A[i]=temp
+     * 2 4 1 i->6<-j 7 分两部分|2 4 1 <-左边部分|6|右边不分-> 7|继续递归调用
+     *
+     * @param nums
+     * @param l
+     * @param r
+     */
+    public static void partition(int nums[], int l, int r) {
+        if (l < r) {
+            int temp = nums[l], i = l, j = r;
+            while (i < j) {
+                while (i < j && nums[j] > temp) {
+                    j--;
+                }
+                if (i < j) nums[i++] = nums[j];
+                while (i < j && nums[i] <= temp) {
+                    i++;
+                }
+                if (i < j) nums[j--] = nums[i];
+            }
+            nums[i] = temp;
+            partition(nums, l, i - 1);
+            partition(nums, i + 1, r);
+        }
+    }
+
+    public static void sort(int[] nums) {
+        partition(nums, 0, nums.length - 1);
+    }
+
+    public static int find(int[] nums, int l, int r, int k) {
+        if (l < r) {
+            int temp = nums[l], i = l, j = r;
+            while (i < j) {
+                while (i < j && nums[j] > temp) j--;
+                if (i < j) nums[i++] = nums[j];
+                while (i < j && nums[i] <= temp) i++;
+                if (i < j) nums[j--] = nums[i];
+            }
+            nums[i] = temp;
+            if (i == nums.length - k) return nums[i];
+            else if (i < nums.length - k) return find(nums, i+1, r, k);
+            else return find(nums, 0, i-1, k);
+        }
         return 0;
     }
 }
