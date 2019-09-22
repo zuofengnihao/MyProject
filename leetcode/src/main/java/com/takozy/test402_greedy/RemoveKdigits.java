@@ -28,6 +28,28 @@ import java.util.Stack;
  */
 public class RemoveKdigits {
 
+    public static void main(String[] args) {
+        String s = removeKdigits("2413219", 3);
+        System.out.println(s);
+    }
+
+    /**
+     * 使用一个栈来处理
+     * 遍历num 如果栈为空 直接压入 如果栈不为空
+     * 再循环栈对比当前值是否小于栈顶的值 小于栈顶的值
+     * 弹出栈顶并且令k-1(表示移除了一个数了)
+     * 直到栈顶为空或者栈顶的值大于或等于当前值或者
+     * k=0(表示不能再移除了)
+     *
+     * 外层循环结束后 判断k是否为0(判断是否抛弃完全)
+     * 如果k!=0 一次移除栈顶k个元素
+     *
+     * 最后将栈中的数组组合成string返回
+     *
+     * @param num
+     * @param k
+     * @return
+     */
     public static String removeKdigits(String num, int k) {
         Stack<Character> stack = new Stack<>();
         char[] chars = num.toCharArray();
