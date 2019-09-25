@@ -1,5 +1,8 @@
 package com.takozy.test_poj2413_greedy;
 
+import java.util.Comparator;
+import java.util.PriorityQueue;
+
 /**
  * 已知一条公路上,有一个起点和一个终点,这之间有n个加油站;已知从这n个加油站到终点的距离d与
  * 各个加油站可以加的油量l,起点位置至终点的距离L与起始时刻邮箱中的油量P;假设使用1个单位的
@@ -8,29 +11,53 @@ package com.takozy.test_poj2413_greedy;
 public class FillGas {
 
     /**
+     * 我的思路:使用优先级队列(加油站油量 大->小)
+     * 遍历加油站 计算出开到此加油站剩余油量(sur 即 初始油量p-(总距离l-剩余距离station[0]))
+     * 如果到此油站无需加油(即剩余油量sur>=0) 将此油站的加油量station[1]入堆 并i++ 查看下个油站
+     * 如果到此油站初始油量会不够(即剩余油量sur<0) 则在前面经过的油站中取油站加油量最大值(即 queue.poll)
+     * 加入p(即p+=queue.poll) 并count++ 加油次数+1 i不++ 继续停留在此站观察 直到保证过此站有足够的油
+     * 如果queue为空了 还不够 说明前面没有油站可以加油 直接返回-1 不可能达到终点
+     * 循环如果正常结束 说明现在的油量已经可以经过所有的加油站了 只剩最后一段距离即最后一个油站到终点的距离
+     * 如果此时油量p>=总路程l直接返回count 如果不够 循环queue加油并count++ 直到p>=l 或者queue为空
+     * 如果queue为空还未达到p>=l 则返回-1表示不可能到达终点
      *
-     * @param l
-     * @param p
-     * @param stations
+     * @param l 为起点到终点的距离
+     * @param p 为起点初始的汽油量
+     * @param stations 加油站[加油站到终点的距离,加油站的加油量]
      * @return
      */
-    //l为起点到终点的距离,p为起点初始的汽油量,stations.length加油站数量[加油站到终点的距离,加油站的加油量]
     public static int getMinimunStop(int l, int p, int[][] stations) {
-        if (l <= p) return 0;
-        int lastIndex = 0;
-        for (int i = 0; i < stations.length; i++) {
-            if (stations[i][0] >= l - p) {
-                lastIndex = lastIndex == -1 ? stations[i][1] : Math.max(stations[lastIndex][1], stations[i][1]);
+        int count = 0;
+        PriorityQueue<Integer> queue = new PriorityQueue<>(new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o2 - o1;
+            }
+        });
+        int i = 0;
+        while (i < stations.length) {
+            int sur = p - (l - stations[i][0]); // 剩余油量
+            int plus = stations[i][1];// 当前站可加的油量
+            if (sur < 0) {
+                if (queue.isEmpty()) return -1;
+                p += queue.poll();
+                count++;
             } else {
-                break;
+                queue.add(plus);
+                i++;
             }
         }
-        if (lastIndex == -1) return -1;
-
-        return 0;
+        if (p >= l) return count;
+        while (!queue.isEmpty()) {
+            p += queue.poll();
+            count++;
+            if (p >= l) return count;
+        }
+        return -1;
     }
 
+
     public static void main(String[] args) {
-        getMinimunStop(25, 16, new int[][]{{15,2},{11,5},{10,3},{4,4}});
+        System.out.println(getMinimunStop(25, 16, new int[][]{{15,2},{11,5},{10,3},{4,4}}));
     }
 }
