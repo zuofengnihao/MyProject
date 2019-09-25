@@ -3,7 +3,6 @@ package com.takozy.test452_greedy;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.LinkedList;
 
 /**
  * 在二维空间中有许多球形的气球。对于每个气球，提供的输入是水平方向上，气球直径的开始和结束坐标。由于它是水平的，所以y坐标并不重要，因此只要知道开始和结束的x坐标就足够了。开始坐标总是小于结束坐标。平面内最多存在104个气球。
@@ -29,12 +28,12 @@ public class FindMinArrowShots {
 
     public static void main(String[] args) {
         int[][] ints = new int[][]{{3,9},{7,12},{3,8},{6,8},{9,10},{2,9},{0,9},{3,9},{0,6},{2,8}};
-        System.out.println(findMinArrowShots(ints));
+        System.out.println(findMinArrowShots2(ints));
     }
 
     /**
      * 自己的思路: 使用区间集合 domains<ArrayList>
-     * 先排序points 只看开始端(即point[0])的大小排序
+     * 先排序points 只看开始端(即point[0])的大小排序(小 -> 大)
      * 循环points 如果domains集合大小为0 表示还没有一个弓箭设计区间
      * 直接将这个points区间入domains集合
      * 如果domains不为0 表示已经存在弓箭射击区间
@@ -78,21 +77,97 @@ public class FindMinArrowShots {
     }
 
     /**
-     * 官方思路:
-     * 排序数组 优先point[0]升序 point[0]相等 判断 point[1]升序
+     * 官方思路: 思路与我的类似 但不记录射击区间 排序数组
+     * point[0]升序排序(Xstart小的在前) 记录第一个point的Xend(flag)
+     * 并让箭数=1 从第二个point开始循环 如果该point Xstart大于flag
+     * 表示需要另外一支箭count++ 并将记录(flag)修改为此point的Xend
+     * 如果小于等于则不需要另外一支箭 但是需要取这两个Xend中的最小值
+     * 循环结束返回count
+     *
+     * 此方法排序保证后续的point只会出现在前面point的前半段或者之后
+     * 如下图
+     *
+     * ===
+     * ==
+     * ====
+     *       =====
+     *
      * @param points
      * @return
      */
     public static int findMinArrowShots1(int[][] points) {
-        Arrays.sort(points, (int[] o1, int[] o2) -> {
-            if (o1[0] == o2[0]) return o1[1] - o2[1];
-            return o1[0] - o2[0];
-        });
-        int count = 0;
-        for (int i = 0; i < points.length; i++) {
-
+        if (points.length == 0) return 0;
+        Arrays.sort(points, (int[] o1, int[] o2) -> o1[0] - o2[0]);
+        int count = 1;
+        int flag = points[0][1];
+        for (int i = 1; i < points.length; i++) {
+            if (points[i][0] > flag) {
+                flag = points[i][1];
+                count++;
+            } else {
+                flag = Math.min(flag, points[i][1]);
+            }
         }
         return count;
     }
 
+    /**
+     * 官方思路2:
+     * 按照Xend升序排序(Xend最小的在前) 同样记录第一个point的flag=Xend count=1
+     * 从第二个point循环points 如果当前point的Xstart大于flag 则表示需要另外一支箭
+     * 修改flag=当前point的Xend 并让count++ 如果小于等于不操作
+     * (类比上个方法省去的部分 此方法效率更高)
+     * 循环结束返回count
+     *
+     * 此方法的排序方式保证了后面的point只会出现在前面point的后半段或者之后
+     * 如下图
+     *
+     *  ====
+     *    ==
+     * =====
+     *  ======
+     *        ====
+     *
+     * @param points
+     * @return
+     */
+    public static int findMinArrowShots2(int[][] points) {
+        if (points.length == 0) return 0;
+        Arrays.sort(points, (int[] o1, int[] o2) -> o1[1] - o2[1]);
+        int count = 1;
+        int flag = points[0][1];
+        for (int i = 1; i < points.length; i++) {
+            if (points[i][0] > flag) {
+                flag = points[i][1];
+                count++;
+            }
+        }
+        return count;
+    }
+
+    /**
+     * leetcode最优算法
+     * 将上面方法不记录flag的值 只记录对应的point的下标
+     * 不使用lambda表达式
+     * @param points
+     * @return
+     */
+    public static int findMinArrowShots3(int[][] points) {
+        if (points.length == 0) return 0;
+        Arrays.sort(points, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                return o1[1] - o2[1];
+            }
+        });
+        int count = 1;
+        int index = 0;
+        for (int i = 1; i < points.length; i++) {
+            if (points[i][0] > points[index][1]) {
+                count++;
+                index = i;
+            }
+        }
+        return count;
+    }
 }
