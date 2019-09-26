@@ -32,25 +32,26 @@ import java.util.List;
 public class Subsets {
 
     public static void main(String[] args) {
-        List<List<Integer>> subsets = subsets(new int[]{1, 2, 3});
+        List<List<Integer>> subsets = subsets(new int[]{1, 2, 3, 4});
         System.out.println(subsets);
     }
 
     public static List<List<Integer>> subsets(int[] nums) {
         List<List<Integer>> lists = new ArrayList<>();
-        method(nums, 0, lists);
+        List<Integer> item = new ArrayList<>();
+        lists.add(new ArrayList<Integer>());
+        method(0, nums, item, lists);
         return lists;
     }
 
-    public static void method(int[]nums, int start, List<List<Integer>> lists) {
-        if (start >= nums.length) return;
-        List<Integer> item = new ArrayList<>();
-        for (int i = start; i < nums.length; i++) {
-            item.add(nums[i]);
-            List<Integer> l = new ArrayList();
-            l.addAll(item);
-            lists.add(l);
-        }
-        method(nums, start+1, lists);
+    public static void method(int index, int[] nums, List<Integer> item, List<List<Integer>> lists) {
+        if (index >= nums.length) return;
+        item.add(nums[index]);
+        ArrayList<Integer> l = new ArrayList<>();
+        l.addAll(item);
+        lists.add(l);
+        method(index + 1, nums, item, lists);
+        item.remove(item.size()-1);
+        method(index + 1, nums, item, lists);
     }
 }
