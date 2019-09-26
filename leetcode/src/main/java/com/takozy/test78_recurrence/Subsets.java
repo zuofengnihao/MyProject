@@ -40,18 +40,18 @@ public class Subsets {
         List<List<Integer>> lists = new ArrayList<>();
         List<Integer> item = new ArrayList<>();
         lists.add(new ArrayList<Integer>());
-        method(0, nums, item, lists);
+        addItem(0, nums, item, lists);
         return lists;
     }
 
-    public static void method(int index, int[] nums, List<Integer> item, List<List<Integer>> lists) {
+    public static void addItem(int index, int[] nums, List<Integer> item, List<List<Integer>> lists) {
         if (index >= nums.length) return;
         item.add(nums[index]);
         ArrayList<Integer> l = new ArrayList<>();
         l.addAll(item);
         lists.add(l);
-        method(index + 1, nums, item, lists);
+        addItem(index + 1, nums, item, lists);
         item.remove(item.size()-1);
-        method(index + 1, nums, item, lists);
+        addItem(index + 1, nums, item, lists);
     }
 }
