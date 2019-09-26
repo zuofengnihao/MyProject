@@ -1,6 +1,7 @@
 package com.takozy.test78_recurrence;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -30,7 +31,26 @@ import java.util.List;
  */
 public class Subsets {
 
+    public static void main(String[] args) {
+        List<List<Integer>> subsets = subsets(new int[]{1, 2, 3});
+        System.out.println(subsets);
+    }
+
     public static List<List<Integer>> subsets(int[] nums) {
-        return null;
+        List<List<Integer>> lists = new ArrayList<>();
+        method(nums, 0, lists);
+        return lists;
+    }
+
+    public static void method(int[]nums, int start, List<List<Integer>> lists) {
+        if (start >= nums.length) return;
+        List<Integer> item = new ArrayList<>();
+        for (int i = start; i < nums.length; i++) {
+            item.add(nums[i]);
+            List<Integer> l = new ArrayList();
+            l.addAll(item);
+            lists.add(l);
+        }
+        method(nums, start+1, lists);
     }
 }
