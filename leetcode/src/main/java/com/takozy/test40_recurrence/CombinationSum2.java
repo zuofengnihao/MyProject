@@ -1,10 +1,7 @@
 package com.takozy.test40_recurrence;
 
-import com.sun.org.apache.regexp.internal.RE;
-
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -42,20 +39,26 @@ import java.util.List;
  */
 public class CombinationSum2 {
 
+    public static void main(String[] args) {
+        List<List<Integer>> lists = combinationSum2(new int[]{10, 1, 2, 7, 6, 1, 5}, 8);
+        System.out.println(lists);
+    }
+
     public static List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        Arrays.sort(candidates);
         List<List<Integer>> lists = new ArrayList<>();
         addItem(0, candidates, target, 0, new ArrayList<Integer>(), lists);
         return lists;
     }
 
     public static void addItem(int index, int[] candidates, int target, int sum, List<Integer> item, List<List<Integer>> lists) {
-        if (index >= candidates.length || sum + candidates[index] > target) return;
+        if (index >= candidates.length) return;
         item.add(candidates[index]);
         sum += candidates[index];
-        if (sum == target) {
-            lists.add(new ArrayList<>(item));
-        } else {
-
-        }
+        addItem(index + 1, candidates, target, sum, item, lists);
+        lists.add(new ArrayList<>(item));
+        item.remove(item.size() - 1);
+        sum -= candidates[index];
+        addItem(index + 1, candidates, target, sum, item, lists);
     }
 }
