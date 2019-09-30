@@ -2,6 +2,7 @@ package com.takozy.test40_recurrence;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -47,18 +48,33 @@ public class CombinationSum2 {
     public static List<List<Integer>> combinationSum2(int[] candidates, int target) {
         Arrays.sort(candidates);
         List<List<Integer>> lists = new ArrayList<>();
-        addItem(0, candidates, target, 0, new ArrayList<Integer>(), lists);
+        HashSet<List<Integer>> set = new HashSet<>();
+        addItem(0, candidates, target, 0, new ArrayList<Integer>(), lists, set);
         return lists;
     }
 
-    public static void addItem(int index, int[] candidates, int target, int sum, List<Integer> item, List<List<Integer>> lists) {
-        if (index >= candidates.length) return;
+    /**
+     * 回溯剪支
+     * @param index
+     * @param candidates
+     * @param target
+     * @param sum
+     * @param item
+     * @param lists
+     * @param set
+     */
+    public static void addItem(int index, int[] candidates, int target, int sum, List<Integer> item,
+                               List<List<Integer>> lists, HashSet<List<Integer>> set) {
+        if (index >= candidates.length || candidates[index] > target || sum > target) return;
         item.add(candidates[index]);
         sum += candidates[index];
-        addItem(index + 1, candidates, target, sum, item, lists);
-        lists.add(new ArrayList<>(item));
+        if (sum == target && !set.contains(item)) {
+            lists.add(new ArrayList<>(item));
+            set.add(item);
+        }
+        addItem(index + 1, candidates, target, sum, item, lists, set);
         item.remove(item.size() - 1);
         sum -= candidates[index];
-        addItem(index + 1, candidates, target, sum, item, lists);
+        addItem(index + 1, candidates, target, sum, item, lists, set);
     }
 }

@@ -1,9 +1,7 @@
-package com.takozy.test25_linkedList;
+package com.takozy.test23_linkedList;
 
 import com.takozy.test21_linkedList.ListNode;
 import com.takozy.test21_linkedList.MergeTwoLists;
-
-import javax.xml.soap.Node;
 
 /**
  * 合并 k 个排序链表，返回合并后的排序链表。请分析和描述算法的复杂度。
