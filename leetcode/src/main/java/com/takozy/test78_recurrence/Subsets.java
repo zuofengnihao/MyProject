@@ -32,7 +32,7 @@ import java.util.List;
 public class Subsets {
 
     public static void main(String[] args) {
-        List<List<Integer>> subsets = subsets(new int[]{1, 2, 2});
+        List<List<Integer>> subsets = subsets(new int[]{1, 2, 3});
         System.out.println(subsets);
     }
 
@@ -40,10 +40,19 @@ public class Subsets {
         List<List<Integer>> lists = new ArrayList<>();
         List<Integer> item = new ArrayList<>();
         lists.add(new ArrayList<Integer>());
-        addItem(0, nums, item, lists);
+        methodAddItem(0, nums, item, lists);
         return lists;
     }
 
+
+    public static void methodAddItem(int index, int[] nums, List<Integer> item, List<List<Integer>> lists) {
+        if (index >= nums.length) return;
+        item.add(nums[index]);
+        lists.add(new ArrayList<>(item));
+        methodAddItem(index+1, nums, item, lists);
+        item.remove(item.size()-1);
+        methodAddItem(index+1, nums, item, lists);
+    }
 
     /**
      * 回溯递归

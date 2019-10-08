@@ -34,10 +34,35 @@ import java.util.List;
  */
 public class SolveNQueens {
 
+    public static void main(String[] args) {
+        List<List<String>> lists = solveNQeens(4);
+        System.out.println(lists);
+    }
+
     public static List<List<String>> solveNQeens(int n) {
         List<List<String>> lists = new ArrayList<>();
+
         List<String> item = new ArrayList<>();
+        addItem(0, false, n, "", item);
+
+        System.out.println(item);
+
         return lists;
+    }
+
+    public static void addItem(int now, boolean flag, int n, String str, List<String> item) {
+        if (now >= n) {
+            item.add(str);
+            return;
+        }
+
+        String yes = str + '.';
+        addItem(now+1, flag, n, yes, item);
+
+        if (!flag) {
+            String no = str + 'Q';
+            addItem(now+1, true, n, no, item);
+        }
     }
 
 }
