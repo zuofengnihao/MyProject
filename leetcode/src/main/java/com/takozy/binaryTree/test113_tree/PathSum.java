@@ -3,6 +3,7 @@ package com.takozy.binaryTree.test113_tree;
 import com.takozy.binaryTree.TreeNode;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -54,16 +55,27 @@ public class PathSum {
         t8.left = t9;
         t8.right = t10;
 
+        TreeNode treeNode = new TreeNode(-2);
+        TreeNode treeNode1 = new TreeNode(-3);
+        treeNode.right = treeNode1;
+
         PathSum pathSum = new PathSum();
         List<List<Integer>> lists = pathSum.pathSum(t1, 22);
         System.out.println(lists);
     }
 
     public List<List<Integer>> pathSum(TreeNode root, int sum) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (root == null) return result;
         int count = 0;
         List<Integer> item = new ArrayList<>();
-        List<List<Integer>> result = new ArrayList<>();
         countSum(root, sum, count, item, result);
+        return result;
+    }
+
+    public List<List<Integer>> pathSum1(TreeNode root, int sum) {
+        List<List<Integer>> result = new ArrayList<>();
+        addSum(root, sum, 0, new ArrayList<>(), result);
         return result;
     }
 
@@ -77,14 +89,25 @@ public class PathSum {
      *         7    2  5   1
      */
     public void countSum(TreeNode node, int sum, int count, List<Integer> item, List<List<Integer>> result) {
-        if (node == null) {
+        count += node.val;
+        item.add(node.val);
+        if (node.left == null && node.right == null) {
             if (count == sum) result.add(item);
             return;
         }
-        if (count > sum) return;
+        if (node.left != null) {
+            ArrayList<Integer> items = new ArrayList<>();
+            items.addAll(item);
+            countSum(node.left, sum, count, items, result);
+        }
+        if (node.right != null) {
+            countSum(node.right, sum, count, item, result);
+        }
+    }
+
+    public void addSum(TreeNode node, int sum, int count, List<Integer> item, List<List<Integer>> result) {
+        if (node == null) return;
         count += node.val;
         item.add(node.val);
-        countSum(node.left, sum, count, item, result);
-        countSum(node.right, sum, count, item, result);
     }
 }
