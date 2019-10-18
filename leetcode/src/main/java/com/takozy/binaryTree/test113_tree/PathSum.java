@@ -5,6 +5,7 @@ import com.takozy.binaryTree.TreeNode;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * 给定一个二叉树和一个目标和，找到所有从根节点到叶子节点路径总和等于给定目标和的路径。
@@ -60,10 +61,16 @@ public class PathSum {
         treeNode.right = treeNode1;
 
         PathSum pathSum = new PathSum();
-        List<List<Integer>> lists = pathSum.pathSum(t1, 22);
+        List<List<Integer>> lists = pathSum.pathSum2(t1, 22);
         System.out.println(lists);
     }
 
+    /**
+     * 思想回溯
+     * @param root
+     * @param sum
+     * @return
+     */
     public List<List<Integer>> pathSum(TreeNode root, int sum) {
         List<List<Integer>> result = new ArrayList<>();
         if (root == null) return result;
@@ -73,21 +80,6 @@ public class PathSum {
         return result;
     }
 
-    public List<List<Integer>> pathSum1(TreeNode root, int sum) {
-        List<List<Integer>> result = new ArrayList<>();
-        addSum(root, sum, 0, new ArrayList<>(), result);
-        return result;
-    }
-
-    /**
-     *               5
-     *              / \
-     *             4   8
-     *            /   / \
-     *           11  13  4
-     *          /  \    / \
-     *         7    2  5   1
-     */
     public void countSum(TreeNode node, int sum, int count, List<Integer> item, List<List<Integer>> result) {
         count += node.val;
         item.add(node.val);
@@ -105,9 +97,53 @@ public class PathSum {
         }
     }
 
+    /**
+     * 回溯
+     * @param root
+     * @param sum
+     * @return
+     */
+    public List<List<Integer>> pathSum1(TreeNode root, int sum) {
+        List<List<Integer>> result = new ArrayList<>();
+        addSum(root, sum, 0, new ArrayList<>(), result);
+        return result;
+    }
+
     public void addSum(TreeNode node, int sum, int count, List<Integer> item, List<List<Integer>> result) {
         if (node == null) return;
         count += node.val;
         item.add(node.val);
+        if (node.left != null || node.right != null) {
+            addSum(node.left, sum, count, item, result);
+            addSum(node.right, sum, count, item, result);
+        } else if (count == sum) {
+            result.add(new ArrayList<>(item));
+        }
+        item.remove(item.size()-1);
+    }
+
+    /**
+     * 利用栈 回溯
+     * @param root
+     * @param sum
+     * @return
+     */
+    public List<List<Integer>> pathSum2(TreeNode root, int sum) {
+        List<List<Integer>> result = new ArrayList<>();
+        putStack(root, sum, 0, new Stack(), result);
+        return result;
+    }
+
+    public void putStack(TreeNode node, int sum, int count, Stack<Integer> stack, List<List<Integer>> result) {
+        if (node == null) return;
+        count += node.val;
+        stack.push(node.val);
+        if (node.left != null || node.right != null) {
+            putStack(node.left, sum, count, stack, result);
+            putStack(node.right, sum, count, stack, result);
+        } else if (count == sum) {
+            result.add(new ArrayList<>(stack));
+        }
+        stack.pop();
     }
 }
