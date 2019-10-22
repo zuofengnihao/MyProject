@@ -2,7 +2,35 @@ package com.takozy.binaryTree.test114_tree;
 
 import com.takozy.binaryTree.TreeNode;
 
+/**
+ * 给定一个二叉树，原地将它展开为链表。
+ *
+ * 例如，给定二叉树
+ *
+ *     1
+ *    / \
+ *   2   5
+ *  / \   \
+ * 3   4   6
+ *
+ * 将其展开为：
+ *
+ * 1
+ *  \
+ *   2
+ *    \
+ *     3
+ *      \
+ *       4
+ *        \
+ *         5
+ *          \
+ *           6
+ *
+ */
 public class Flatten {
+
+    private TreeNode father;
 
     public static void main(String[] args) {
         TreeNode n1 = new TreeNode(1);
@@ -24,17 +52,15 @@ public class Flatten {
         }
     }
 
-    public TreeNode flatten(TreeNode root) {
-        TreeNode father = new TreeNode();
-        method(root, father);
-        return father.right;
-    }
-
-    public void method(TreeNode node, TreeNode parent) {
-        if (node == null) return;
-        parent.right = node;
-        TreeNode right = node.right;
-        method(node.left, node);
-        method(right, node);
+    public void flatten(TreeNode root) {
+        if(root == null) return;
+        if (father != null) {
+            father.right = root;
+            father.left = null;
+        }
+        TreeNode right = root.right;
+        father = root;
+        flatten(root.left);
+        flatten(right);
     }
 }

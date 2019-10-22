@@ -1,7 +1,12 @@
 package com.takozy.binaryTree;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
- * 二叉树遍历的三种方式
+ * 二叉树遍历
+ * 深度优先的三种遍历方式: 前序 中序 后序
+ * 宽度优先的方式: 利用队列
  */
 public class Ergodic {
 
@@ -32,6 +37,8 @@ public class Ergodic {
         ergodic.ergodicMid(n1);
         System.out.print("\n" + "后序遍历:" + "\t");
         ergodic.ergodicBehind(n1);
+        System.out.print("\n" + "广度优先:" + "\t");
+        ergodic.levelErgodic(n1);
     }
 
     /**
@@ -65,5 +72,20 @@ public class Ergodic {
         ergodicBehind(node.left);
         ergodicBehind(node.right);
         System.out.print(node.val + "\t");
+    }
+
+    /**
+     * 宽度优先
+     */
+    public void levelErgodic(TreeNode node) {
+        if (node == null) return;
+        LinkedList<TreeNode> queue = new LinkedList<>();
+        queue.add(node);
+        while (queue.size() > 0) {
+            TreeNode n = queue.poll();
+            System.out.print(n.val + "\t");
+            if (n.left != null) queue.add(n.left);
+            if (n.right != null) queue.add(n.right);
+        }
     }
 }
