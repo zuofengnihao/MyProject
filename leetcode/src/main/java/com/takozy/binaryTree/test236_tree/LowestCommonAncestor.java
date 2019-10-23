@@ -5,6 +5,10 @@ import com.takozy.binaryTree.TreeNode;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。
+ *
+ */
 public class LowestCommonAncestor {
 
     public static void main(String[] args) {
