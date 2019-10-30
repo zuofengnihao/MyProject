@@ -1,5 +1,6 @@
 package com.takozy.binarySearch.test34_binarySearch;
 
+import java.lang.annotation.Target;
 import java.util.Arrays;
 
 /**
@@ -25,10 +26,16 @@ public class SearchRange {
 
     public static void main(String[] args) {
         SearchRange o = new SearchRange();
-        int[] ints = o.searchRange(new int[]{5, 5, 5, 7, 7, 8, 8, 10}, 10);
+        int[] ints = o.searchRange1(new int[]{0,0,0,0,0,1,1,2,2,3,4,4,5,5,5,5,6,7}, 0);
         System.out.println(Arrays.toString(ints));
     }
 
+    /**
+     * 只使用了二分查找target
+     * @param nums
+     * @param target
+     * @return
+     */
     public int[] searchRange(int nums[], int target) {
         int l = 0, r = nums.length - 1;
         while (l <= r) {
@@ -47,23 +54,38 @@ public class SearchRange {
         return new int[]{-1, -1};
     }
 
-    public int[] searchRange1(int nums[], int target) {
-        int l = 0, r = nums.length - 1, a = -1, b = -1;
+    /**
+     * 使用一个循环找到minIndex,maxIndex
+     * @param nums
+     * @param target
+     * @return
+     */
+    public int[] searchRange1(int[] nums, int target) {
+        int l = 0, r = nums.length - 1, a = -1, b = -1, flagL = -1, flagR = -1;
         while (l <= r) {
-            int index = (l + r) / 2;
-            if (nums[index] == target) {
-                if (index == 0 || nums[index - 1] != target) a = index;
-                else {
-
+            int i = (l + r) / 2;
+            if (nums[i] > target) r = i - 1;
+            else if (nums[i] < target) l = i + 1;
+            else {
+                if (i == 0 || nums[i - 1] != target) a = i;
+                if (i == nums.length - 1 || nums[i + 1] != target) b = i;
+                if (a != -1 && b != -1) break;
+                else if (b != -1) r = i - 1;
+                else if (a != -1) {
+                    if (flagL != -1 && flagR != -1) {
+                        l = flagL;
+                        flagL = -1;
+                        r = flagR;
+                        flagR = -1;
+                    } else {
+                        l = i + 1;
+                    }
                 }
-                if (index == nums.length - 1 || nums[index + 1] != target) b = index;
                 else {
-
+                    flagL = flagL == -1 ? i + 1 : flagL;
+                    flagR = flagR == -1 ? r : flagR;
+                    r = i - 1;
                 }
-            } else if (nums[index] > target) {
-                r = index - 1;
-            } else {
-                l = index + 1;
             }
         }
         return new int[]{a, b};
