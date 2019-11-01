@@ -1,5 +1,7 @@
 package com.takozy.recurrence.test315_recurrence;
 
+import com.takozy.binarySearch.TreeNode;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,6 +53,11 @@ public class CountSmaller {
         return counts;
     }
 
+    /**
+     * 并归 + 标记数组
+     * @param nums
+     * @return
+     */
     public List<Integer> countSmaller1(int[] nums) {
         if (nums == null || nums.length == 0) return new ArrayList<>();
         int[] result = new int[nums.length];
@@ -106,6 +113,21 @@ public class CountSmaller {
             k++;
         }
     }
+
+    /**
+     * 二叉树
+     * @param nums
+     */
+    public List<Integer> countSmaller2(int[] nums) {
+        int[] temp = new int[nums.length];
+        TreeNode root = new TreeNode(nums[nums.length - 1]);
+        temp[nums.length - 1] = 0;
+        for (int i = nums.length - 2; i >= 0; i--) {
+            TreeNode.insert(root, new TreeNode(nums[i]));
+        }
+
+    }
+
 
     /**
      * 归并排序

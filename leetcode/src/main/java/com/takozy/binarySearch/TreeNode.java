@@ -10,13 +10,19 @@ public class TreeNode {
         this.val = val;
     }
 
-    public void insert(TreeNode node) {
-        if (node.val <= this.val) {
-            if (this.left == null) this.left = node;
-            else this.left.insert(node);
+    public static void insert(TreeNode root, TreeNode newNode) {
+        if (root.val > newNode.val) {
+            if (root.left != null) {
+                insert(root.left, newNode);
+            } else {
+                root.left = newNode;
+            }
         } else {
-            if (this.right == null) this.right = node;
-            else this.right.insert(node);
+            if (root.right != null) {
+                insert(root.right, newNode);
+            } else {
+                root.right = newNode;
+            }
         }
     }
 }
