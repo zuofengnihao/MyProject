@@ -25,4 +25,11 @@ public class TreeNode {
             }
         }
     }
+
+    public static boolean find(TreeNode root, TreeNode node) {
+        if (root == null) return false;
+        if (node.val == root.val) return true;
+        if (node.val > root.val) return find(root.right, node);
+        else return find(root.left, node);
+    }
 }

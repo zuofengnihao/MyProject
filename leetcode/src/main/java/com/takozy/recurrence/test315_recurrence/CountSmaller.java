@@ -3,6 +3,7 @@ package com.takozy.recurrence.test315_recurrence;
 import com.takozy.binarySearch.TreeNode;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -23,7 +24,7 @@ import java.util.List;
 public class CountSmaller {
 
     public static void main(String[] args) {
-        int[] nums = new int[]{5, 2, 6, 1};
+        int[] nums = new int[]{5, -7, 9, 1, 3, 5, -2, 1};
         CountSmaller countSmaller = new CountSmaller();
 
         /*countSmaller.sort(nums);
@@ -32,7 +33,8 @@ public class CountSmaller {
         /*List<Integer> list = countSmaller.countSmaller(nums);
         System.out.println(list);*/
 
-        countSmaller.countSmaller1(nums);
+        List<Integer> integers = countSmaller.countSmaller1(nums);
+        System.out.println(integers);
 
     }
 
@@ -119,11 +121,14 @@ public class CountSmaller {
      * @param nums
      */
     public List<Integer> countSmaller2(int[] nums) {
-        int[] temp = new int[nums.length];
+        if (nums == null || nums.length == 0) return null;
+        ArrayList<Integer> list = new ArrayList<>();
         TreeNode root = new TreeNode(nums[nums.length - 1]);
-        temp[nums.length - 1] = 0;
-        for (int i = nums.length - 2; i >= 0; i--) {
-            TreeNode.insert(root, new TreeNode(nums[i]));
+        TreeNode father = root;
+        int count = 0;
+        for (int i = nums.length - 2; i >= 0 ; i++) {
+            TreeNode treeNode = new TreeNode(nums[i]);
+            TreeNode.insert();
         }
 
     }
