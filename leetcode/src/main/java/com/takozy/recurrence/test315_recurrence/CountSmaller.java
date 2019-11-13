@@ -2,9 +2,7 @@ package com.takozy.recurrence.test315_recurrence;
 
 import com.takozy.binarySearch.TreeNode;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * 给定一个整数数组 nums，按要求返回一个新数组 counts。数组 counts 有该性质： counts[i] 的值是  nums[i] 右侧小于 nums[i] 的元素的数量。
@@ -122,15 +120,18 @@ public class CountSmaller {
      */
     public List<Integer> countSmaller2(int[] nums) {
         if (nums == null || nums.length == 0) return null;
-        ArrayList<Integer> list = new ArrayList<>();
-        TreeNode root = new TreeNode(nums[nums.length - 1]);
-        TreeNode father = root;
+        int[] temp = new int[nums.length];
         int count = 0;
-        for (int i = nums.length - 2; i >= 0 ; i++) {
-            TreeNode treeNode = new TreeNode(nums[i]);
-            TreeNode.insert();
+        temp[nums.length - 1] = 0;
+        TreeNode root = new TreeNode(nums[nums.length - 1]);
+        for (int i = nums.length - 2; i >= 0; i--) {
+            //TreeNode.insert(root, new TreeNode());
         }
-
+        ArrayList<Integer> result = new ArrayList<>();
+        for (int item: temp) {
+            result.add(item);
+        }
+        return result;
     }
 
 
